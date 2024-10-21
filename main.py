@@ -116,7 +116,7 @@ twitch_miner = TwitchChannelPointsMiner(
 twitch_miner.mine(
     [
        Streamer("thegiftingchannel", settings=StreamerSettings(make_predictions=True  , follow_raid=False , claim_drops=True  , watch_streak=True )),
-	   Streamer("staggerrilla", settings=StreamerSettings(make_predictions=True  , follow_raid=False , claim_drops=True  , watch_streak=True )),
+	   Streamer("hitsquadgodfather", settings=StreamerSettings(make_predictions=True  , follow_raid=False , claim_drops=True  , watch_streak=True )),
        Streamer("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj", settings=StreamerSettings(make_predictions=True  , follow_raid=False , claim_drops=True  , watch_streak=True ))
     ],                                  # Array of streamers (order = priority)
     followers=False,                    # Automatic download the list of your followers
