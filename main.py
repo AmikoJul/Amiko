@@ -78,13 +78,15 @@ twitch_miner = TwitchChannelPointsMiner(
             events=[Events.CHAT_MENTION, Events.DROP_CLAIM],                          # Only these events will be sent
         )
     ),
-    streamer_settings=StreamerSettings(
-        make_predictions=True,                  # If you want to Bet / Make prediction
-        follow_raid=True,                       # Follow raid to obtain more points
+    
+
+ streamer_settings=StreamerSettings(
+        make_predictions=False,                  # If you want to Bet / Make prediction
+        follow_raid=False,                       # Follow raid to obtain more points
         claim_drops=True,                       # We can't filter rewards base on stream. Set to False for skip viewing counter increase and you will never obtain a drop reward from this script. Issue #21
         claim_moments=True,                     # If set to True, https://help.twitch.tv/s/article/moments will be claimed when available
         watch_streak=True,                      # If a streamer go online change the priority of streamers array and catch the watch screak. Issue #11
-        chat=ChatPresence.ONLINE,               # Join irc chat to increase watch-time [ALWAYS, NEVER, ONLINE, OFFLINE]
+        chat=ChatPresence.NEVER,               # Join irc chat to increase watch-time [ALWAYS, NEVER, ONLINE, OFFLINE]
         bet=BetSettings(
             strategy=Strategy.SMART,            # Choose you strategy!
             percentage=5,                       # Place the x% of your channel points
@@ -103,21 +105,13 @@ twitch_miner = TwitchChannelPointsMiner(
     )
 )
 
-# You can customize the settings for each streamer. If not settings were provided, the script would use the streamer_settings from TwitchChannelPointsMiner.
-# If no streamer_settings are provided in TwitchChannelPointsMiner the script will use default settings.
-# The streamers array can be a String -> username or Streamer instance.
 
-# The settings priority are: settings in mine function, settings in TwitchChannelPointsMiner instance, default settings.
-# For example, if in the mine function you don't provide any value for 'make_prediction' but you have set it on TwitchChannelPointsMiner instance, the script will take the value from here.
-# If you haven't set any value even in the instance the default one will be used
-
-#twitch_miner.analytics(host="127.0.0.1", port=5000, refresh=5, days_ago=7)   # Start the Analytics web-server
 
 twitch_miner.mine(
     [
-       Streamer("thegiftingchannel", settings=StreamerSettings(make_predictions=True  , follow_raid=False , claim_drops=True  , watch_streak=True )),
-	   Streamer("hitsquadgodfather", settings=StreamerSettings(make_predictions=True  , follow_raid=False , claim_drops=True  , watch_streak=True )),
-       Streamer("88chestkingdom", settings=StreamerSettings(make_predictions=True  , follow_raid=False , claim_drops=True  , watch_streak=True ))
+       Streamer("thegiftingchannel", settings=StreamerSettings(make_predictions=False  , follow_raid=False , claim_drops=True  , watch_streak=True )),
+	   Streamer("88lootnova", settings=StreamerSettings(make_predictions=False  , follow_raid=False , claim_drops=True  , watch_streak=True )),
+       Streamer("thelootchannel", settings=StreamerSettings(make_predictions=False  , follow_raid=False , claim_drops=True  , watch_streak=True ))
     ],                                  # Array of streamers (order = priority)
     followers=False,                    # Automatic download the list of your followers
     followers_order=FollowersOrder.ASC  # Sort the followers list by follow date. ASC or DESC 
